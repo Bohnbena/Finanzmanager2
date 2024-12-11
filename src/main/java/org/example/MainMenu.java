@@ -19,6 +19,7 @@ public class MainMenu {
                     liste.bearbeitungsmodusliste("Ausgabe");
                     break;
                 case "S":
+
                     break;
                 case "X":
                     flagbreak = 1;

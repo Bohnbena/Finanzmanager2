@@ -92,6 +92,19 @@ public class Listen {
         }
     }
 
+    public void transaktioneingegangen() {
+        System.out.println("Welche Position ist Eingegangen?");
+        String userinput = scanner.nextLine();
+        Transaktionen transaktionen = List.get(Integer.parseInt(userinput));
+        if (transaktionen.isAngekommen())
+        {
+          transaktionen.setAngekommen(false);
+        }else
+        {
+            transaktionen.setAngekommen(true);
+        }
+    }
+
     public void bearbeitungsmodusliste(String quelle) {
         int flagbreak = 0;
         List = jsonutils.jsontolist(quelle);
@@ -116,6 +129,7 @@ public class Listen {
                     bearbeitelisteposition();
                     break;
                 case "E":
+                    transaktioneingegangen();
                     break;
                 case "X":
                     flagbreak = 1;
