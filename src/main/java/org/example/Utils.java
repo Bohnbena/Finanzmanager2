@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Utils {
     Scanner scanner = new Scanner(System.in);
 
-
     public void space(int space)
     {
         for(int i=0;i<space;i++)

@@ -40,7 +40,6 @@ public class Listen {
         //villeicht in zukunft eine einstellungs option?
         //TODO Einstellungen Option , Listen Anzeigen nebeneinander oder untereinander
         //erstmal untereinander
-
         while (true) {
             utils.space(50);
             //1. liste aus json laden
@@ -54,11 +53,22 @@ public class Listen {
             System.out.println("Ausgaben:");
             listeanzeigen(ausgabeliste);
             System.out.println("====================================");
-
+            //Allgemeine Statistik
+            //Holen uns die summen von denn jeweiligen listen
+            int summeeinahme = summeliste(einahmeliste);
+            int summeausgabe = summeliste(ausgabeliste);
+            System.out.println("Ausgaben: " + summeausgabe + "€" + " ----------- " + "Einahmen: " + summeeinahme + "€");
             scanner.nextLine();
             //Todo abfrage
-
         }
+    }
+
+    public int summeliste(ArrayList<Transaktionen> list) {
+        int summe = 0;
+        for (Transaktionen transaktionen : list) {
+            summe += transaktionen.getBetrag();
+        }
+        return summe;
     }
 
     public void bearbeitelisteposition() {
