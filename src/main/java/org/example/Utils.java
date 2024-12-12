@@ -64,5 +64,6 @@ public class Utils {
         System.out.println("Betrag");
         int betrag = Integer.parseInt(scanner.nextLine());
         return new Transaktionen(name,betrag,false);
+        //test
     }
 }
