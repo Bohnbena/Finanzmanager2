@@ -25,13 +25,39 @@ public class Listen {
         List.add(transaktionen);
     }
 
-
     public void listeanzeigen(ArrayList<Transaktionen> transaktionens) {
         int counter = 0;
         for (Transaktionen transaktionen : transaktionens) {
             String counterstring = Integer.toString(counter);
             System.out.println(counterstring + ". " + transaktionen);
             counter++;
+        }
+    }
+
+
+    public void zeigestatisitkan() {
+        //wie möchten wir die listen anzeigen untereinander oder nebeneinander
+        //villeicht in zukunft eine einstellungs option?
+        //TODO Einstellungen Option , Listen Anzeigen nebeneinander oder untereinander
+        //erstmal untereinander
+
+        while (true) {
+            utils.space(50);
+            //1. liste aus json laden
+            ArrayList<Transaktionen> einahmeliste = jsonutils.jsontolist("Einahme");
+            ArrayList<Transaktionen> ausgabeliste = jsonutils.jsontolist("Ausgabe");
+            //2. zeige die listen an
+            System.out.println("Einahmen:");
+            listeanzeigen(einahmeliste);
+            //utils.space(2);
+            System.out.println("====================================");
+            System.out.println("Ausgaben:");
+            listeanzeigen(ausgabeliste);
+            System.out.println("====================================");
+
+            scanner.nextLine();
+            //Todo abfrage
+
         }
     }
 
@@ -96,11 +122,9 @@ public class Listen {
         System.out.println("Welche Position ist Eingegangen?");
         String userinput = scanner.nextLine();
         Transaktionen transaktionen = List.get(Integer.parseInt(userinput));
-        if (transaktionen.isAngekommen())
-        {
-          transaktionen.setAngekommen(false);
-        }else
-        {
+        if (transaktionen.isAngekommen()) {
+            transaktionen.setAngekommen(false);
+        } else {
             transaktionen.setAngekommen(true);
         }
     }
@@ -134,7 +158,6 @@ public class Listen {
                 case "X":
                     flagbreak = 1;
                     break;
-
             }
             jsonutils.listtojson(List, quelle);
             if (flagbreak == 1) {
