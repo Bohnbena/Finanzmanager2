@@ -3,6 +3,7 @@ package org.example;
 public class MainMenu {
     Utils utils = new Utils();
     Listen liste = new Listen();
+    Statistik statistik = new Statistik();
 
     public void start() {
         int flagbreak = 0;
@@ -19,7 +20,7 @@ public class MainMenu {
                     liste.bearbeitungsmodusliste("Ausgabe");
                     break;
                 case "S":
-                     liste.zeigestatisitkan();
+                    statistik.zeigestatisitkan();
                     break;
                 case "X":
                     flagbreak = 1;

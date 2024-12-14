@@ -65,4 +65,10 @@ public class Utils {
         return new Transaktionen(name,betrag,false);
         //test
     }
+
+    public void statistikabfrage() {
+        System.out.println("Welche Statistik möchten sie sehen");
+        System.out.println("1-");
+
+    }
 }

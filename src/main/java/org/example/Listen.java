@@ -35,34 +35,6 @@ public class Listen {
     }
 
 
-    public void zeigestatisitkan() {
-        //wie möchten wir die listen anzeigen untereinander oder nebeneinander
-        //villeicht in zukunft eine einstellungs option?
-        //TODO Einstellungen Option , Listen Anzeigen nebeneinander oder untereinander
-        //erstmal untereinander
-        while (true) {
-            utils.space(50);
-            //1. liste aus json laden
-            ArrayList<Transaktionen> einahmeliste = jsonutils.jsontolist("Einahme");
-            ArrayList<Transaktionen> ausgabeliste = jsonutils.jsontolist("Ausgabe");
-            //2. zeige die listen an
-            System.out.println("Einahmen:");
-            listeanzeigen(einahmeliste);
-            //utils.space(2);
-            System.out.println("====================================");
-            System.out.println("Ausgaben:");
-            listeanzeigen(ausgabeliste);
-            System.out.println("====================================");
-            //Allgemeine Statistik
-            //Holen uns die summen von denn jeweiligen listen
-            int summeeinahme = summeliste(einahmeliste);
-            int summeausgabe = summeliste(ausgabeliste);
-            System.out.println("Ausgaben: " + summeausgabe + "€" + " ----------- " + "Einahmen: " + summeeinahme + "€");
-            scanner.nextLine();
-            //Todo abfrage
-        }
-    }
-
     public int summeliste(ArrayList<Transaktionen> list) {
         int summe = 0;
         for (Transaktionen transaktionen : list) {
