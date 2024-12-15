@@ -43,7 +43,6 @@ public class Statistik {
             if (flagbreak == 1) {
                 break;
             }
-
         }
     }
 
@@ -51,6 +50,10 @@ public class Statistik {
         //1. liste aus json laden
         ArrayList<Transaktionen> einahmeliste = jsonutils.jsontolist("Einahme");
         ArrayList<Transaktionen> ausgabeliste = jsonutils.jsontolist("Ausgabe");
+        //Sortiere nach dem höchstem betrag Insertion Sort
+        einahmeliste = list.inserationsort(einahmeliste);
+        ausgabeliste = list.inserationsort(ausgabeliste);
+
         //2. zeige die listen an
         System.out.println("Einahmen:");
         list.listeanzeigen(einahmeliste);
@@ -60,6 +63,7 @@ public class Statistik {
         list.listeanzeigen(ausgabeliste);
         System.out.println("====================================");
         //Allgemeine Statistik
+
         //Holen uns die summen von denn jeweiligen listen
         int summeeinahme = list.summeliste(einahmeliste);
         int summeausgabe = list.summeliste(ausgabeliste);
