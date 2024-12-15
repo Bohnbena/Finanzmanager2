@@ -34,7 +34,6 @@ public class Listen {
         }
     }
 
-
     public int summeliste(ArrayList<Transaktionen> list) {
         int summe = 0;
         for (Transaktionen transaktionen : list) {

@@ -66,9 +66,12 @@ public class Utils {
         //test
     }
 
-    public void statistikabfrage() {
+    public int statistikabfrage() {
         System.out.println("Welche Statistik möchten sie sehen");
-        System.out.println("1-");
-
+        System.out.println("1-Allgemein");
+        System.out.println("2-Eingegangene");
+        System.out.println("3-Offene");
+        System.out.println("4-Exit");
+        return Integer.parseInt(scanner.nextLine());
     }
 }
