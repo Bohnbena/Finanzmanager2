@@ -13,11 +13,10 @@ public class Statistik {
         //wir zeigen am anfang die standard statistik
         //markieren das mit einem int flag
         utils.space(50);
+        int flagbreak = 0;
         int anfangstatisitk = 0;
         while (true) {
-
             if (anfangstatisitk == 0) {
-
                 standartansicht();
                 //haben wir jetzt einmal geladen brauchen wir ja jetzt nicht mehr
                 anfangstatisitk = 1;
@@ -38,7 +37,11 @@ public class Statistik {
                     break;
                 case 4:
                     //Exit
+                    flagbreak = 1;
                     break;
+            }
+            if (flagbreak == 1) {
+                break;
             }
 
         }
