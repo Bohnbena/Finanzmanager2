@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 //Klasse für sotrierungsfunktionen von listen
 public class Sortierung {
@@ -21,6 +22,20 @@ public class Sortierung {
             list.set(j + 1, transaktionen);
         }
         return list;
+    }
+
+    public ArrayList<Transaktionen> nurangekommen(ArrayList<Transaktionen> list) {
+        ArrayList<Transaktionen> gefiltert = new ArrayList<>(list.stream()
+                .filter(t -> t.isAngekommen())
+                .collect(Collectors.toList()));
+        return gefiltert;
+    }
+
+    public ArrayList<Transaktionen> nichtangekommen(ArrayList<Transaktionen> list) {
+        ArrayList<Transaktionen> gefiltert = new ArrayList<>(list.stream()
+                .filter(t -> !t.isAngekommen())
+                .collect(Collectors.toList()));
+        return gefiltert;
     }
 
 }

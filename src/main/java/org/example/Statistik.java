@@ -18,7 +18,7 @@ public class Statistik {
         int anfangstatisitk = 0;
         while (true) {
             if (anfangstatisitk == 0) {
-                standartansicht();
+                standartansicht(1);
                 //haben wir jetzt einmal geladen brauchen wir ja jetzt nicht mehr
                 anfangstatisitk = 1;
             }
@@ -27,14 +27,8 @@ public class Statistik {
             int anwser = utils.statistikabfrage();
             utils.space(50);
             switch (anwser) {
-                case 1:
-                    standartansicht();
-                    break;
-                case 2:
-                    //Eingegangen
-                    break;
-                case 3:
-                    //Offen
+                case 1, 2, 3:
+                    standartansicht(anwser);
                     break;
                 case 4:
                     //Exit
@@ -47,13 +41,27 @@ public class Statistik {
         }
     }
 
-    public void standartansicht() {
+    public void standartansicht(int option) {
         //1. liste aus json laden
         ArrayList<Transaktionen> einahmeliste = jsonutils.jsontolist("Einahme");
         ArrayList<Transaktionen> ausgabeliste = jsonutils.jsontolist("Ausgabe");
         //Sortiere nach dem höchstem betrag Insertion Sort
         einahmeliste = sortieren.inserationsort(einahmeliste);
         ausgabeliste = sortieren.inserationsort(ausgabeliste);
+
+        //Sortierung welche liste zeigen wir denn an?
+        if (option != 1) {
+            switch (option) {
+                case 2:
+                    einahmeliste = sortieren.nurangekommen(einahmeliste);
+                    ausgabeliste = sortieren.nurangekommen(ausgabeliste);
+                    break;
+                case 3:
+                    einahmeliste = sortieren.nichtangekommen(einahmeliste);
+                    ausgabeliste = sortieren.nichtangekommen(ausgabeliste);
+                    break;
+            }
+        }
 
         //2. zeige die listen an
         System.out.println("Einahmen:");
