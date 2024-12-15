@@ -8,6 +8,7 @@ public class Statistik {
     JSONUtils jsonutils = new JSONUtils();
     Scanner scanner = new Scanner(System.in);
     Listen list = new Listen();
+    Sortierung sortieren = new Sortierung();
 
     public void zeigestatisitkan() {
         //wir zeigen am anfang die standard statistik
@@ -51,8 +52,8 @@ public class Statistik {
         ArrayList<Transaktionen> einahmeliste = jsonutils.jsontolist("Einahme");
         ArrayList<Transaktionen> ausgabeliste = jsonutils.jsontolist("Ausgabe");
         //Sortiere nach dem höchstem betrag Insertion Sort
-        einahmeliste = list.inserationsort(einahmeliste);
-        ausgabeliste = list.inserationsort(ausgabeliste);
+        einahmeliste = sortieren.inserationsort(einahmeliste);
+        ausgabeliste = sortieren.inserationsort(ausgabeliste);
 
         //2. zeige die listen an
         System.out.println("Einahmen:");
