@@ -1,14 +1,13 @@
 package org.example;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Listen {
     Utils utils = new Utils();
     JSONUtils jsonutils = new JSONUtils();
     Scanner scanner = new Scanner(System.in);
+    MongoDBUtils mongo = new MongoDBUtils();
 
     //Deklarieren eine liste für die transaktionen
     private ArrayList<Transaktionen> List = new ArrayList<>();
@@ -112,7 +111,10 @@ public class Listen {
 
     public void bearbeitungsmodusliste(String quelle) {
         int flagbreak = 0;
-        List = jsonutils.jsontolist(quelle);
+        // Änderung Von Json zu DB
+        //List = jsonutils.jsontolist(quelle);
+        List = mongo.database(quelle);
+
         while (true) {
             //Quellen kann es nur zwei geben einahme / ausgabe
             // wir wandeln die liste in json
@@ -128,6 +130,7 @@ public class Listen {
                     Transaktionen transaktionen = utils.transaktionenabfrage();
                     //Schreibe Transkaktion in liste
                     schreibeTransaktionInListe(transaktionen);
+                    mongo.schreibeindb(transaktionen, quelle);
                     break;
                 case "B":
                     //Bearbeite eine position

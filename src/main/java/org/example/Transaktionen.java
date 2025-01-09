@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Transaktionen {
     //deklarieren alle wichtigen variablen für die transaktionen
+    private String id;
     private int betrag;
     private String bezeichnung;
     private boolean angekommen = false;
@@ -34,17 +35,27 @@ public class Transaktionen {
         this.betrag = betrag;
     }
 
-    public Transaktionen(String bezeichnung,int betrag, boolean angekommen) {
+    public Transaktionen(String id, String bezeichnung, int betrag, boolean angekommen) {
+        this.id = id;
         this.bezeichnung = bezeichnung;
         this.betrag = betrag;
         this.angekommen = angekommen;
+    }
+
+    // Getters and setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Transaktionen() {}
 
     public String toString()
     {
-        return  bezeichnung + " " + betrag + "€" + " " + angekommen;
+        return bezeichnung + " " + betrag + "€" + " " + angekommen;
     }
 
 }

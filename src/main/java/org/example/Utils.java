@@ -62,7 +62,7 @@ public class Utils {
         String name = scanner.nextLine();
         System.out.println("Betrag");
         int betrag = Integer.parseInt(scanner.nextLine());
-        return new Transaktionen(name,betrag,false);
+        return new Transaktionen("", name, betrag, false);
         //test
     }
 
