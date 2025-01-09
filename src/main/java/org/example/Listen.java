@@ -113,11 +113,10 @@ public class Listen {
         int flagbreak = 0;
         // Änderung Von Json zu DB
         //List = jsonutils.jsontolist(quelle);
-        List = mongo.database(quelle);
-
         while (true) {
             //Quellen kann es nur zwei geben einahme / ausgabe
             // wir wandeln die liste in json
+            List = mongo.database(quelle);
             utils.space(50);
             listeanzeigen(List);
             utils.space(5);
@@ -129,7 +128,7 @@ public class Listen {
                     //Transaktion abfrage
                     Transaktionen transaktionen = utils.transaktionenabfrage();
                     //Schreibe Transkaktion in liste
-                    schreibeTransaktionInListe(transaktionen);
+                    //schreibeTransaktionInListe(transaktionen);
                     mongo.schreibeindb(transaktionen, quelle);
                     break;
                 case "B":
@@ -143,7 +142,7 @@ public class Listen {
                     flagbreak = 1;
                     break;
             }
-            jsonutils.listtojson(List, quelle);
+            //jsonutils.listtojson(List, quelle);
             if (flagbreak == 1) {
                 break;
             }

@@ -45,7 +45,7 @@ public class MongoDBUtils {
             Transaktionen transaktion = new Transaktionen();
             transaktion.setId(doc.getObjectId("_id").toString());
             transaktion.setBezeichnung(doc.getString("name"));
-            transaktion.setBetrag(doc.getInteger("betrag", 0));
+            transaktion.setBetrag(doc.getInteger("Betrag"));
             transaktionenList.add(transaktion);
         }
         return transaktionenList;
