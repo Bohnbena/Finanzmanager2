@@ -1,5 +1,7 @@
 package org.example;
 
+import org.bson.types.ObjectId;
+
 import java.util.Scanner;
 
 public class Utils {
@@ -62,7 +64,7 @@ public class Utils {
         String name = scanner.nextLine();
         System.out.println("Betrag");
         int betrag = Integer.parseInt(scanner.nextLine());
-        return new Transaktionen("", name, betrag, false);
+        return new Transaktionen(new ObjectId(), name, betrag, false);
         //test
     }
 

@@ -1,11 +1,10 @@
 package org.example;
 
-import java.net.BindException;
-import java.util.Scanner;
+import org.bson.types.ObjectId;
 
 public class Transaktionen {
     //deklarieren alle wichtigen variablen für die transaktionen
-    private String id;
+    private ObjectId id;
     private int betrag;
     private String bezeichnung;
     private boolean angekommen = false;
@@ -35,7 +34,7 @@ public class Transaktionen {
         this.betrag = betrag;
     }
 
-    public Transaktionen(String id, String bezeichnung, int betrag, boolean angekommen) {
+    public Transaktionen(ObjectId id, String bezeichnung, int betrag, boolean angekommen) {
         this.id = id;
         this.bezeichnung = bezeichnung;
         this.betrag = betrag;
@@ -43,11 +42,11 @@ public class Transaktionen {
     }
 
     // Getters and setters
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -55,7 +54,7 @@ public class Transaktionen {
 
     public String toString()
     {
-        return bezeichnung + " " + betrag + "€" + " " + angekommen;
+        return id + " " + bezeichnung + " " + betrag + "€" + " " + angekommen;
     }
 
 }

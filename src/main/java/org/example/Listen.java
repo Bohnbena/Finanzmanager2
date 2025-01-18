@@ -41,12 +41,11 @@ public class Listen {
         return summe;
     }
 
-    public void bearbeitelisteposition() {
+    public void bearbeitelisteposition(String quelle) {
         //Wir fragen welche positon bearbeitet werdensoll
         System.out.println("Welche Position möchten sie bearbeiten?");
         //Weisen einen scanner zu
         String positionstring = scanner.nextLine();
-
         System.out.println("Möchtest du denn Eintrag komplett ändern oder nur bestimme einstellungen? K/E");
         System.out.println("K-Komplett / E-Einzelne Elemente");
 
@@ -54,21 +53,25 @@ public class Listen {
         userinput.toUpperCase();
         //Formatieren in integer
         int position = Integer.parseInt(positionstring);
-
+        Transaktionen transaktionen = List.get(position);
         if (userinput.equals("K")) {
             //machen die selbe abfrage wie beim hinzufügen und erstellen ein neues trankasktions object
-            Transaktionen transaktionen = utils.transaktionenabfrage();
+            Transaktionen transaktionenNeu = utils.transaktionenabfrage();
             //Setze neue daten in
-            List.set(position, transaktionen);
+            transaktionenNeu.setId(transaktionen.getId());
+
+            List.set(position, transaktionenNeu);
+            mongo.ErsetzteDatensatz(transaktionenNeu, quelle);
         } else if (userinput.equals("E")) {
             //laden von der liste ein object um es weiter zu bearbeiten
-            Transaktionen transaktionen = List.get(position);
+
             //bearbeiten jetzt die einzelenen einstellungen
-            bearbeiteeinzelneelemtevonposition(transaktionen);
+            bearbeiteeinzelneelemtevonposition(transaktionen, quelle);
         }
+
     }
 
-    public void bearbeiteeinzelneelemtevonposition(Transaktionen transaktionen) {
+    public void bearbeiteeinzelneelemtevonposition(Transaktionen transaktionen, String quelle) {
         String antwort = utils.abfrageinnerebearbeitung();
         antwort.toUpperCase();
         utils.space(5);
@@ -77,12 +80,14 @@ public class Listen {
                 System.out.println("Name?");
                 String bezeichnung = scanner.nextLine();
                 transaktionen.setBezeichnung(bezeichnung);
+                mongo.bearbeiteinDB(transaktionen, quelle, 1);
                 break;
             case "B":
                 System.out.println("Betrag?");
                 String betragstring = scanner.nextLine();
                 int betrag = Integer.parseInt(betragstring);
                 transaktionen.setBetrag(betrag);
+                mongo.bearbeiteinDB(transaktionen, quelle, 2);
                 break;
             case "A":
                 System.out.println("True Oder False");
@@ -92,9 +97,11 @@ public class Listen {
                 } else {
                     transaktionen.setAngekommen(false);
                 }
+                mongo.bearbeiteinDB(transaktionen, quelle, 3);
                 break;
             case "X":
                 break;
+
         }
     }
 
@@ -112,7 +119,6 @@ public class Listen {
     public void bearbeitungsmodusliste(String quelle) {
         int flagbreak = 0;
         // Änderung Von Json zu DB
-        //List = jsonutils.jsontolist(quelle);
         while (true) {
             //Quellen kann es nur zwei geben einahme / ausgabe
             // wir wandeln die liste in json
@@ -133,7 +139,7 @@ public class Listen {
                     break;
                 case "B":
                     //Bearbeite eine position
-                    bearbeitelisteposition();
+                    bearbeitelisteposition(quelle);
                     break;
                 case "E":
                     transaktioneingegangen();
